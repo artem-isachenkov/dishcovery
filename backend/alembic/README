@@ -1,0 +1,10 @@
+Generic single-database configuration.
+
+Command	                                        Description
+alembic init alembic	                        Initialize Alembic in your project
+alembic revision --autogenerate -m "Message"	Generate a new migration based on model changes
+alembic upgrade head	                        Apply the latest migrations
+alembic downgrade -1	                        Rollback the last migration
+alembic downgrade <revision_id>	                Rollback to a specific migration
+alembic history	                                Show migration history
+alembic current	                                Show current migration version
