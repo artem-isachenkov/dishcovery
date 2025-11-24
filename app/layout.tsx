@@ -1,5 +1,15 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { FloatingDock } from "@/components/dock";
+import {
+  IconCategory,
+  IconFileDescription,
+  IconHome,
+  IconUser,
+} from "@tabler/icons-react";
+import NextUIProvider from "@/lib/providers";
+import Header from "@/components/header";
+
 import "./globals.css";
 
 const geistSans = Geist({
@@ -27,7 +37,30 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <NextUIProvider>
+          <Header />
+          <div className="flex flex-col justify-center items-center mt-[16px] mx-[16px] md:mx-0">
+            <div className="grid grid-cols-2 md:grid-cols-6 w-full min-h-screen max-w-[1024px]">
+              <main className="col-span-6">{children}</main>
+            </div>
+            <FloatingDock
+              items={[
+                { href: "/", title: "Home", icon: <IconHome /> },
+                {
+                  href: "/recipes",
+                  title: "Recipes",
+                  icon: <IconFileDescription />,
+                },
+                {
+                  href: "/categories",
+                  title: "Categories",
+                  icon: <IconCategory />,
+                },
+                { href: "/profile", title: "Profile", icon: <IconUser /> },
+              ]}
+            />
+          </div>
+        </NextUIProvider>
       </body>
     </html>
   );
